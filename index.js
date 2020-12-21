@@ -1,7 +1,10 @@
 import { Navigation } from 'react-native-navigation';
+
 import HomeScreen from './src/screens/Home';
+import SearchScreen from './src/screens/Search';
 
 Navigation.registerComponent('app.MyBooksy.HomeScreen', () => HomeScreen);
+Navigation.registerComponent('app.MyBooksy.SearchScreen', () => SearchScreen);
 
 Navigation.events().registerAppLaunchedListener(() => {
     Navigation.setDefaultOptions({
@@ -12,6 +15,7 @@ Navigation.events().registerAppLaunchedListener(() => {
             drawBehind: true,
             largeTitle: {
                 visible: true,
+                color: '#EF2E8B',
             },
         },
         bottomTabs: {
@@ -51,7 +55,42 @@ Navigation.events().registerAppLaunchedListener(() => {
                                     iconColor: 'white',
                                     textColor: 'white',
                                     text: 'Home',
-                                    selectedTextColor: 'white',
+                                    selectedTextColor: '#EF2E8B',
+                                    selectedIconColor: '#EF2E8B',
+                                },
+                            },
+                        },
+                    },
+                    {
+                        stack: {
+                            children: [
+                                {
+                                    component: {
+                                        name: 'app.MyBooksy.SearchScreen',
+                                        options: {
+                                            topBar: {
+                                                searchBar: {
+                                                    visible: true,
+                                                    hideOnScroll: true,
+                                                    placeholder:
+                                                        'Look for titles, authors, ISBN...',
+                                                },
+                                                title: {
+                                                    text: 'Search',
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            ],
+                            options: {
+                                bottomTab: {
+                                    icon: require('./src/resources/ic_search_48px.png'),
+                                    iconColor: 'white',
+                                    textColor: 'white',
+                                    text: 'Search',
+                                    selectedTextColor: '#EF2E8B',
+                                    selectedIconColor: '#EF2E8B',
                                 },
                             },
                         },
