@@ -1,16 +1,59 @@
 import { Navigation } from 'react-native-navigation';
-import App from './App';
+import HomeScreen from './src/screens/Home';
 
-Navigation.registerComponent('com.myApp.WelcomeScreen', () => App);
+Navigation.registerComponent('app.MyBooksy.HomeScreen', () => HomeScreen);
 
 Navigation.events().registerAppLaunchedListener(() => {
+    Navigation.setDefaultOptions({
+        statusBar: {
+            backgroundColor: '#4d089a',
+        },
+        topBar: {
+            drawBehind: true,
+            largeTitle: {
+                visible: true,
+            },
+        },
+        bottomTabs: {
+            drawBehind: true,
+        },
+    });
+
     Navigation.setRoot({
         root: {
-            stack: {
+            bottomTabs: {
+                id: 'BOOKSY_BOTTOM_TABS',
                 children: [
                     {
-                        component: {
-                            name: 'com.myApp.WelcomeScreen',
+                        stack: {
+                            children: [
+                                {
+                                    component: {
+                                        name: 'app.MyBooksy.HomeScreen',
+                                        options: {
+                                            topBar: {
+                                                searchBar: {
+                                                    visible: true,
+                                                    hideOnScroll: true,
+                                                    placeholder: 'Search your library ...',
+                                                },
+                                                title: {
+                                                    text: 'My Booksy',
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            ],
+                            options: {
+                                bottomTab: {
+                                    icon: require('./src/resources/ic_home_48px.png'),
+                                    iconColor: 'white',
+                                    textColor: 'white',
+                                    text: 'Home',
+                                    selectedTextColor: 'white',
+                                },
+                            },
                         },
                     },
                 ],
