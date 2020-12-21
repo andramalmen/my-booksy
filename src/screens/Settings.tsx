@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const Search: React.FunctionComponent = () => {
+const Settings: React.FunctionComponent = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Search screen</Text>
+            <Text style={styles.text}>Settings scren</Text>
         </View>
     );
 };
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Search;
+export default Settings;

@@ -2,14 +2,17 @@ import { Navigation } from 'react-native-navigation';
 
 import HomeScreen from './src/screens/Home';
 import SearchScreen from './src/screens/Search';
+import SettingsScreen from './src/screens/Settings';
 
 Navigation.registerComponent('app.MyBooksy.HomeScreen', () => HomeScreen);
 Navigation.registerComponent('app.MyBooksy.SearchScreen', () => SearchScreen);
+Navigation.registerComponent('app.MyBooksy.SettingsScreen', () => SettingsScreen);
 
 Navigation.events().registerAppLaunchedListener(() => {
     Navigation.setDefaultOptions({
         statusBar: {
-            backgroundColor: '#4d089a',
+            visible: true,
+            style: 'light',
         },
         topBar: {
             drawBehind: true,
@@ -17,6 +20,12 @@ Navigation.events().registerAppLaunchedListener(() => {
                 visible: true,
                 color: '#EF2E8B',
             },
+        },
+        bottomTab: {
+            iconColor: 'white',
+            selectedIconColor: '#EF2E8B',
+            textColor: 'white',
+            selectedTextColor: '#EF2E8B',
         },
         bottomTabs: {
             drawBehind: true,
@@ -52,11 +61,8 @@ Navigation.events().registerAppLaunchedListener(() => {
                             options: {
                                 bottomTab: {
                                     icon: require('./src/resources/ic_home_48px.png'),
-                                    iconColor: 'white',
-                                    textColor: 'white',
+
                                     text: 'Home',
-                                    selectedTextColor: '#EF2E8B',
-                                    selectedIconColor: '#EF2E8B',
                                 },
                             },
                         },
@@ -86,11 +92,31 @@ Navigation.events().registerAppLaunchedListener(() => {
                             options: {
                                 bottomTab: {
                                     icon: require('./src/resources/ic_search_48px.png'),
-                                    iconColor: 'white',
-                                    textColor: 'white',
                                     text: 'Search',
-                                    selectedTextColor: '#EF2E8B',
-                                    selectedIconColor: '#EF2E8B',
+                                },
+                            },
+                        },
+                    },
+                    {
+                        stack: {
+                            children: [
+                                {
+                                    component: {
+                                        name: 'app.MyBooksy.SettingsScreen',
+                                        options: {
+                                            topBar: {
+                                                title: {
+                                                    text: 'Settings',
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            ],
+                            options: {
+                                bottomTab: {
+                                    icon: require('./src/resources/ic_settings_48px.png'),
+                                    text: 'Settings',
                                 },
                             },
                         },
