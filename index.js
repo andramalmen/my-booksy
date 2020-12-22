@@ -1,5 +1,6 @@
 import { Navigation } from 'react-native-navigation';
 
+import BookDetails from './src/screens/BookDetails';
 import HomeScreen from './src/screens/Home';
 import SearchScreen from './src/screens/Search';
 import SettingsScreen from './src/screens/Settings';
@@ -7,6 +8,7 @@ import SettingsScreen from './src/screens/Settings';
 Navigation.registerComponent('app.MyBooksy.HomeScreen', () => HomeScreen);
 Navigation.registerComponent('app.MyBooksy.SearchScreen', () => SearchScreen);
 Navigation.registerComponent('app.MyBooksy.SettingsScreen', () => SettingsScreen);
+Navigation.registerComponent('app.MyBooksy.BookDetails', () => BookDetails);
 
 Navigation.events().registerAppLaunchedListener(() => {
     Navigation.setDefaultOptions({
@@ -19,6 +21,10 @@ Navigation.events().registerAppLaunchedListener(() => {
             largeTitle: {
                 visible: true,
                 color: '#EF2E8B',
+            },
+            subtitle: {
+                visible: true,
+                color: '#EF6CB7',
             },
         },
         bottomTab: {

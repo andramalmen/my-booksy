@@ -1,6 +1,7 @@
 import { useDebounce } from '@react-hook/debounce';
 import * as React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { useNavigationSearchBarUpdate } from 'react-native-navigation-hooks';
 
 import { GoogleBook, searchBooks } from '../api/books';
@@ -27,19 +28,46 @@ const Search: React.FunctionComponent<{ componentId: string }> = ({ componentId 
         searchBooks(query).then(res => setResults(res));
     }, [query]);
 
+    const navigateToBookDetails = (book: GoogleBook) => {
+        Navigation.push(componentId, {
+            component: {
+                name: 'app.MyBooksy.BookDetails',
+                passProps: {
+                    book,
+                },
+                options: {
+                    topBar: {
+                        title: {
+                            text: book.volumeInfo.title,
+                        },
+                        subtitle: {
+                            text: `by ${book.volumeInfo.authors[0]}`,
+                        },
+                    },
+                },
+            },
+        });
+    };
+
     return (
         <ScrollView>
             <View style={styles.container}>
                 {results.map(book => {
                     return (
-                        <View key={book.id} style={styles.listItem}>
-                            <Image
-                                resizeMode="contain"
-                                style={styles.image}
-                                source={{ uri: book.volumeInfo.imageLinks.thumbnail }}
-                            />
-                            <Text style={styles.title}>{book.volumeInfo.authors}</Text>
-                        </View>
+                        <TouchableHighlight
+                            key={book.id}
+                            style={styles.listItem}
+                            onPress={() => navigateToBookDetails(book)}
+                        >
+                            <>
+                                <Image
+                                    resizeMode="contain"
+                                    style={styles.image}
+                                    source={{ uri: book.volumeInfo.imageLinks.thumbnail }}
+                                />
+                                <Text style={styles.title}>{book.volumeInfo.authors}</Text>
+                            </>
+                        </TouchableHighlight>
                     );
                 })}
             </View>
