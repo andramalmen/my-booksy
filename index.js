@@ -1,14 +1,9 @@
 import { Navigation } from 'react-native-navigation';
 
-import BookDetails from './src/screens/BookDetails';
-import HomeScreen from './src/screens/Home';
-import SearchScreen from './src/screens/Search';
-import SettingsScreen from './src/screens/Settings';
+import registerScreens from './src/screens/register';
+import Routes from './src/screens/routes';
 
-Navigation.registerComponent('app.MyBooksy.HomeScreen', () => HomeScreen);
-Navigation.registerComponent('app.MyBooksy.SearchScreen', () => SearchScreen);
-Navigation.registerComponent('app.MyBooksy.SettingsScreen', () => SettingsScreen);
-Navigation.registerComponent('app.MyBooksy.BookDetails', () => BookDetails);
+registerScreens();
 
 Navigation.events().registerAppLaunchedListener(() => {
     Navigation.setDefaultOptions({
@@ -48,7 +43,7 @@ Navigation.events().registerAppLaunchedListener(() => {
                             children: [
                                 {
                                     component: {
-                                        name: 'app.MyBooksy.HomeScreen',
+                                        name: Routes.HomeScreen,
                                     },
                                 },
                             ],
@@ -66,7 +61,7 @@ Navigation.events().registerAppLaunchedListener(() => {
                             children: [
                                 {
                                     component: {
-                                        name: 'app.MyBooksy.SearchScreen',
+                                        name: Routes.SearchScreen,
                                     },
                                 },
                             ],
@@ -83,7 +78,7 @@ Navigation.events().registerAppLaunchedListener(() => {
                             children: [
                                 {
                                     component: {
-                                        name: 'app.MyBooksy.SettingsScreen',
+                                        name: Routes.SettingsScreen,
                                     },
                                 },
                             ],

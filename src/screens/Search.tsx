@@ -5,6 +5,7 @@ import { Navigation } from 'react-native-navigation';
 import { useNavigationSearchBarUpdate } from 'react-native-navigation-hooks';
 
 import { GoogleBook, searchBooks } from '../api/books';
+import Routes from '../screens/routes';
 import { NavigationComponent } from '../types/navigation';
 
 const Search: NavigationComponent = ({ componentId }) => {
@@ -31,7 +32,7 @@ const Search: NavigationComponent = ({ componentId }) => {
     const navigateToBookDetails = (book: GoogleBook) => {
         Navigation.push(componentId, {
             component: {
-                name: 'app.MyBooksy.BookDetails',
+                name: Routes.BookDetails,
                 passProps: {
                     book,
                 },
