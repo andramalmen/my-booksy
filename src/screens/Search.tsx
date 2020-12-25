@@ -5,8 +5,9 @@ import { Navigation } from 'react-native-navigation';
 import { useNavigationSearchBarUpdate } from 'react-native-navigation-hooks';
 
 import { GoogleBook, searchBooks } from '../api/books';
+import { NavigationComponent } from '../types/navigation';
 
-const Search: React.FunctionComponent<{ componentId: string }> = ({ componentId }) => {
+const Search: NavigationComponent = ({ componentId }) => {
     const [query, setQuery] = useDebounce<string>('skyward', 2000);
     const [results, setResults] = React.useState<GoogleBook[]>([]);
     useNavigationSearchBarUpdate(
@@ -21,7 +22,6 @@ const Search: React.FunctionComponent<{ componentId: string }> = ({ componentId 
     );
 
     React.useEffect(() => {
-        console.log('SEARCH FOR', query);
         if (!query) {
             return;
         }
@@ -34,16 +34,6 @@ const Search: React.FunctionComponent<{ componentId: string }> = ({ componentId 
                 name: 'app.MyBooksy.BookDetails',
                 passProps: {
                     book,
-                },
-                options: {
-                    topBar: {
-                        title: {
-                            text: book.volumeInfo.title,
-                        },
-                        subtitle: {
-                            text: `by ${book.volumeInfo.authors[0]}`,
-                        },
-                    },
                 },
             },
         });
@@ -73,6 +63,21 @@ const Search: React.FunctionComponent<{ componentId: string }> = ({ componentId 
             </View>
         </ScrollView>
     );
+};
+
+Search.options = () => {
+    return {
+        topBar: {
+            searchBar: {
+                visible: true,
+                hideOnScroll: true,
+                placeholder: 'Search by title, author or ISBN',
+            },
+            title: {
+                text: 'Find books',
+            },
+        },
+    };
 };
 
 const styles = StyleSheet.create({

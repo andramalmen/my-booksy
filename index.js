@@ -49,18 +49,6 @@ Navigation.events().registerAppLaunchedListener(() => {
                                 {
                                     component: {
                                         name: 'app.MyBooksy.HomeScreen',
-                                        options: {
-                                            topBar: {
-                                                searchBar: {
-                                                    visible: true,
-                                                    hideOnScroll: true,
-                                                    placeholder: 'Search your library ...',
-                                                },
-                                                title: {
-                                                    text: 'My Booksy',
-                                                },
-                                            },
-                                        },
                                     },
                                 },
                             ],
@@ -79,19 +67,6 @@ Navigation.events().registerAppLaunchedListener(() => {
                                 {
                                     component: {
                                         name: 'app.MyBooksy.SearchScreen',
-                                        options: {
-                                            topBar: {
-                                                searchBar: {
-                                                    visible: true,
-                                                    hideOnScroll: true,
-                                                    placeholder:
-                                                        'Look for titles, authors, ISBN...',
-                                                },
-                                                title: {
-                                                    text: 'Search',
-                                                },
-                                            },
-                                        },
                                     },
                                 },
                             ],
@@ -109,13 +84,6 @@ Navigation.events().registerAppLaunchedListener(() => {
                                 {
                                     component: {
                                         name: 'app.MyBooksy.SettingsScreen',
-                                        options: {
-                                            topBar: {
-                                                title: {
-                                                    text: 'Settings',
-                                                },
-                                            },
-                                        },
                                     },
                                 },
                             ],

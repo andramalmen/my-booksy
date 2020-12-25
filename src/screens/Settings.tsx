@@ -1,12 +1,24 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const Settings: React.FunctionComponent = () => {
+import { NavigationComponent } from '../types/navigation';
+
+const Settings: NavigationComponent = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Settings scren</Text>
         </View>
     );
+};
+
+Settings.options = () => {
+    return {
+        topBar: {
+            title: {
+                text: 'Settings',
+            },
+        },
+    };
 };
 
 const styles = StyleSheet.create({

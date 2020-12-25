@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Text, View, Image, StatusBar } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { GoogleBook } from '../api/books';
+import { NavigationComponent } from '../types/navigation';
 
 interface BookDetailsProps {
-    componentId: 'string';
     book: GoogleBook;
 }
 
-const BookDetails: React.FunctionComponent<BookDetailsProps> = ({ book }) => {
+const BookDetails: NavigationComponent<BookDetailsProps> = ({ book }) => {
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -27,6 +27,16 @@ const BookDetails: React.FunctionComponent<BookDetailsProps> = ({ book }) => {
             </View>
         </ScrollView>
     );
+};
+
+BookDetails.options = passProps => {
+    return {
+        topBar: {
+            title: {
+                text: passProps?.book.volumeInfo.title ?? 'Unknown',
+            },
+        },
+    };
 };
 
 const styles = StyleSheet.create({
