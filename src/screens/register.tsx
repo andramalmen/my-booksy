@@ -1,3 +1,5 @@
+import * as React from 'react';
+import { AppearanceProvider } from 'react-native-appearance';
 import { Navigation } from 'react-native-navigation';
 
 import { NavigationComponent } from '../types/navigation';
@@ -15,8 +17,16 @@ map.set(Routes.BookDetails, BookDetails);
 map.set(Routes.SettingsScreen, SettingsScreen);
 
 const registerScreens = () => {
-    map.forEach((screen, route) => {
-        Navigation.registerComponent(route, () => screen);
+    map.forEach((Screen, route) => {
+        Navigation.registerComponent(
+            route,
+            () => props => (
+                <AppearanceProvider>
+                    <Screen {...props} />
+                </AppearanceProvider>
+            ),
+            () => Screen
+        );
     });
 };
 

@@ -19,7 +19,8 @@ export const searchBooks = async (query: string): Promise<GoogleBook[]> => {
         );
 
         const json = await results.json();
-        return (json.items as GoogleBook[]).filter(item => item.volumeInfo.imageLinks.thumbnail);
+
+        return (json.items as GoogleBook[]).filter(item => item.volumeInfo.imageLinks);
     } catch (err) {
         console.log(err);
         return [];
