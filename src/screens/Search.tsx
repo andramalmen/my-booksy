@@ -8,6 +8,8 @@ import { GoogleBook, searchBooks } from '../api/books';
 import Routes from '../screens/routes';
 import { NavigationComponent } from '../types/navigation';
 
+import { navigateTo } from '../utils/navigation';
+
 const Search: NavigationComponent = ({ componentId }) => {
     const [query, setQuery] = useDebounce<string>('skyward', 2000);
     const [results, setResults] = React.useState<GoogleBook[]>([]);
@@ -29,16 +31,8 @@ const Search: NavigationComponent = ({ componentId }) => {
         searchBooks(query).then(res => setResults(res));
     }, [query]);
 
-    const navigateToBookDetails = (book: GoogleBook) => {
-        Navigation.push(componentId, {
-            component: {
-                name: Routes.BookDetails,
-                passProps: {
-                    book,
-                },
-            },
-        });
-    };
+    const navigateToBookDetails = (book: GoogleBook) =>
+        navigateTo(componentId, Routes.BookDetails, { book });
 
     return (
         <ScrollView>
