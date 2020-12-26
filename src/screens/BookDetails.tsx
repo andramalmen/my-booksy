@@ -16,8 +16,6 @@ const themedStyles = styleSheetFactory(theme => ({
         flexDirection: 'row',
         paddingVertical: 16,
         height: 250,
-        borderWidth: 1,
-        borderColor: 'white',
     },
     detailsContainer: {
         flex: 1,
